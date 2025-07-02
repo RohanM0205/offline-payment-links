@@ -1,0 +1,320 @@
+/* ========== Global Styles ========== */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+    background-color: #d62b1f;
+    color: white;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+    .navbar-brand:hover {
+        color: #f9dddd !important;
+    }
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #ffe6e6 !important;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+    }
+
+/* Navbar Buttons */
+.navbar .btn-outline-primary {
+    border-color: #ffffff;
+    color: #ffffff;
+    margin-left: 0.5rem;
+}
+
+    .navbar .btn-outline-primary:hover {
+        background-color: #ffffff;
+        color: #d62b1f;
+    }
+
+.navbar .btn-primary {
+    background-color: #ffffff;
+    color: #d62b1f;
+    margin-left: 0.5rem;
+    border-color: transparent;
+}
+
+    .navbar .btn-primary:hover {
+        background-color: #ffe6e6;
+        color: #b8241a;
+    }
+
+/* ========== Footer ========== */
+.footer {
+    background-color: #d62b1f;
+    color: white;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 0.95rem;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+    margin-top: auto;
+}
+
+    .footer a {
+        color: white;
+        text-decoration: underline;
+    }
+
+        .footer a:hover {
+            color: #ffe6e6;
+            text-decoration: none;
+        }
+
+
+/* ========== Hero Section ========== */
+.landing-hero {
+    background: linear-gradient(135deg, #fff8f8, #ffe6e6);
+    min-height: 80vh;
+    width: 100%;
+    padding: 80px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .landing-hero .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .landing-hero h1 {
+        font-size: 2.75rem;
+        color: #d62b1f;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        text-shadow: 1px 1px 3px rgba(214, 43, 31, 0.1);
+    }
+
+    .landing-hero p {
+        font-size: 1.2rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .landing-hero h3 {
+        margin-top: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .landing-hero .btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .landing-hero .btn-primary {
+        background-color: #d62b1f;
+        border-color: #b8241a;
+        color: white;
+    }
+
+        .landing-hero .btn-primary:hover {
+            background-color: #b8241a;
+            border-color: #9a1e16;
+        }
+
+    .landing-hero .btn-outline-primary {
+        border-color: #d62b1f;
+        color: #d62b1f;
+    }
+
+        .landing-hero .btn-outline-primary:hover {
+            background-color: #d62b1f;
+            color: white;
+            border-color: #d62b1f;
+        }
+
+/* ========== Focus & Form Styling ========== */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem rgba(214, 43, 31, 0.5);
+}
+
+
+/* ====================== */
+/* Send Payment Link Button */
+/* ====================== */
+.btn-send-payment {
+    display: block;
+    margin: 30px auto 60px;
+    padding: 14px 32px;
+    background: linear-gradient(to right, #e53e3e, #c53030);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 8px rgba(229, 62, 62, 0.2);
+    width: fit-content;
+    min-width: 240px;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-section {
+    padding-bottom: 80px;
+    position: relative;
+}
+
+.btn-send-payment:hover {
+    background: linear-gradient(to right, #c53030, #9b2c2c);
+    box-shadow: 0 6px 12px rgba(229, 62, 62, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-send-payment:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(229, 62, 62, 0.2);
+}
+
+.btn-send-payment:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.4);
+}
+
+.btn-send-payment::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-send-payment:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+
+.btn-reset-form {
+    display: block;
+    margin: 0px auto 0;
+    padding: 10px 24px;
+    background: transparent;
+    color: #c53030;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    border: 2px solid #c53030;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-width: 180px;
+    width: fit-content;
+}
+
+    .btn-reset-form:hover {
+        background: #c53030;
+        color: white;
+        box-shadow: 0 4px 10px rgba(229, 62, 62, 0.2);
+        transform: translateY(-1px);
+    }
+
+    .btn-reset-form:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h1,
+.hero-content p,
+.hero-content h3,
+.hero-content .d-flex {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.hero-content p {
+    animation-delay: 0.2s;
+}
+
+.hero-content h3 {
+    animation-delay: 0.4s;
+}
+
+.hero-content .d-flex {
+    animation-delay: 0.6s;
+}

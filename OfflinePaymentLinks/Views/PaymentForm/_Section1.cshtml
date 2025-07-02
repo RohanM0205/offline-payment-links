@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Section 1 -->
+<div class="section-1 stylish-form">
+    <div class="form-section">
+        <!-- Left Side -->
+        <div class="form-left">
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label class="section-subtitle">Channel Type</label>
+                    <div class="radio-group stylish-radio">
+                        <label class="radio-option">
+                            <input type="radio" id="gc" name="channelType" value="GC" />
+                            <span class="radio-checkmark"></span>
+                            <span class="radio-label">GC</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="dc" name="channelType" value="DC" />
+                            <span class="radio-checkmark"></span>
+                            <span class="radio-label">DC</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-subtitle">Customer Type</label>
+                    <div class="radio-group stylish-radio">
+                        <label class="radio-option">
+                            <input type="radio" id="ind" name="customerType" value="Individual" />
+                            <span class="radio-checkmark"></span>
+                            <span class="radio-label">Individual</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="corp" name="customerType" value="Corporate" />
+                            <span class="radio-checkmark"></span>
+                            <span class="radio-label">Corporate</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="transType" class="section-subtitle">Transaction Type</label>
+                <div class="select-wrapper">
+                    <select id="transType" name="transType" class="stylish-select">
+                        <option value="NB">New Business</option>
+                        <option value="RO">Renewal</option>
+                        <option value="SF">Shortfall</option>
+                        <option value="EN">Endorsement</option>
+                        <option value="RL">Roll Over</option>
+                        <option value="NCB">NCB Recovery</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="form-right">
+            <!-- KYC ID Group -->
+            <div class="form-group" id="kycIdGroup">
+                <label for="kycId" class="section-subtitle">Enter KYC ID</label>
+                <input type="text" id="kycId" name="kycId" class="stylish-input" placeholder="Enter KYC identification" autocomplete="off">
+            </div>
+            <div id="errorDisplay" class="error-message" style="display: none;"></div>
+
+            <!-- Policy Search Group -->
+            <div class="form-group" id="policySearchGroup" style="display: none;">
+                <label for="policyNumber" class="section-subtitle">Enter Policy Number</label>
+                <input type="text" id="policyNumber" name="policyNumber" class="stylish-input" placeholder="Policy reference number">
+            </div>
+
+            <!-- Shortfall Search Group -->
+            <div class="form-group" id="shortfallSearchGroup" style="display: none;">
+                <div class="form-group">
+                    <label for="searchType" class="section-subtitle">Select search type</label>
+                    <div class="select-wrapper stylish-select">
+                        <select id="searchType" name="searchType">
+                            <option value="CustomerId">Customer Id</option>
+                            <option value="InwardNumber">Inward Number</option>
+                            <option value="InteractionId">Interaction Id</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="shortfallFieldLabel" for="shortfallFieldValue" class="section-subtitle">Enter Customer Id</label>
+                    <input type="text" id="shortfallFieldValue" name="shortfallFieldValue" class="stylish-input" placeholder="Enter search value">
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-button-container">
+                <button id="verifyBtn" type="button" class="stylish-button verify">Verify</button>
+                <button id="searchBtn" type="button" class="stylish-button search" style="display: none;">Search</button>
+                <button id="findBtn" type="button" class="stylish-button find" style="display: none;">Find</button>
+            </div>
+        </div>
+    </div>
+</div>

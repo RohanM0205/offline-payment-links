@@ -1,0 +1,54 @@
+﻿@page
+@model OfflinePaymentLinks.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-subtitle">Please sign in to your account</p>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <!-- Email Field -->
+            <div class="mb-3 position-relative">
+                <label asp-for="Input.Email" class="form-label text-muted">Email</label>
+                <input asp-for="Input.Email" class="form-control py-3 rounded-3" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3 position-relative">
+                <label asp-for="Input.Password" class="form-label text-muted">Password</label>
+                <input asp-for="Input.Password" class="form-control py-3 rounded-3" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="form-check remember-me mb-3">
+                <input asp-for="Input.RememberMe" class="form-check-input" />
+                <label asp-for="Input.RememberMe" class="form-check-label"></label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn login-btn w-100">Log in</button>
+
+            <!-- Extra Links -->
+            <div class="login-links">
+                @* <a asp-page="./ForgotPassword">Forgot your password?</a> *@
+                <a href="#" onclick="alert('Forgot Password is temporarily disabled.'); return false;">
+                    Forgot your password?
+                </a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Don't have an account? Register</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

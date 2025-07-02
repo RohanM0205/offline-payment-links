@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Section 3 -->
+<div class="section-3 stylish-details">
+    <div class="details-form">
+        <!-- Requestor Mobile and Email -->
+        <div class="form-row">
+            <div class="form-group dual-group">
+                <div class="text-group stylish-input">
+                    <label for="requestor-mobile">Requestor Mobile</label>
+                    <input type="tel" id="requestor-mobile" name="requestor-mobile" placeholder="+91 9876543210">
+                </div>
+                <div class="text-group stylish-input">
+                    <label for="requestor-email">Requestor Emails</label>
+                    <div class="email-wrapper">
+                        <input type="email" id="requestor-email" name="requestor-email" placeholder="example@domain.com">
+                        <button type="button" class="add-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requestor Emails List -->
+        <div class="form-row">
+            <div class="form-group">
+                <div class="text-group stylish-input">
+                    <label for="requestor-emails-list">Requestor Emails List</label>
+                    <input type="text" id="requestor-emails-list" name="requestor-emails-list" placeholder="Added emails will appear here" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product and Amount -->
+        <div class="form-row">
+            <div class="form-group dual-group">
+                <div class="dropdown-group stylish-select">
+                    <label for="product">Product</label>
+                    <div class="select-wrapper">
+                        <select id="product" name="product">
+                            <option value="">Select Product</option>
+                            <option value="Health">Health</option>
+                            <option value="Motor">Motor</option>
+                            <option value="Pet">Pet</option>
+                            <option value="Fire">Fire</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-group stylish-input">
+                    <label for="amount">Amount</label>
+                    <input type="text" id="amount" name="amount" placeholder="Enter amount">
+                </div>
+            </div>
+        </div>
+
+        <!-- Remarks -->
+        <div class="form-row">
+            <div class="form-group">
+                <div class="text-group stylish-input">
+                    <label for="remarks">Remarks</label>
+                    <textarea id="remarks" name="remarks" placeholder="Enter your remarks here" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

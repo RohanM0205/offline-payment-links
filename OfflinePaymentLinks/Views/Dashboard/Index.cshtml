@@ -1,0 +1,226 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    var user = User;
+}
+
+<!-- Red Theme CSS -->
+<style>
+    :root {
+        --primary-red: #d32f2f;
+        --dark-red: #b71c1c;
+        --light-red: #ffcdd2;
+        --accent-gold: #ffc107;
+    }
+
+    .dashboard-container {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .dashboard-header {
+        background-color: var(--primary-red);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .btn-dashboard {
+        background-color: var(--primary-red);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        margin: 0.5rem;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        min-width: 220px;
+    }
+
+    .btn-dashboard:hover {
+        background-color: var(--dark-red);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-dashboard-secondary {
+        background-color: white;
+        color: var(--primary-red);
+        border: 2px solid var(--primary-red);
+    }
+
+    .btn-dashboard-secondary:hover {
+        background-color: var(--light-red);
+    }
+
+    .btn-accent {
+        background-color: var(--accent-gold);
+        color: #333;
+    }
+
+    .btn-accent:hover {
+        background-color: #ffb300;
+    }
+
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .divider {
+        border-top: 2px dashed var(--primary-red);
+        margin: 1.5rem auto;
+        width: 80%;
+        opacity: 0.3;
+        .dashboard-illustration
+
+    {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border: 1px solid var(--light-red);
+    }
+
+    /* Force hard limits on image dimensions */
+    .dashboard-illustration {
+        max-width: 100vw !important; 
+        overflow: hidden;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+        .dashboard-illustration img {
+            max-width: 50% !important;
+            max-height: 50vh !important; 
+            width: auto !important;
+            height: auto !important;
+            display: inline-block !important;
+            object-fit: contain !important;
+        }
+
+            .dashboard-illustration img[style] {
+                max-width: 50% !important;
+                width: auto !important;
+                height: auto !important;
+            }
+
+
+
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-header text-center">
+        <h1><i class="fas fa-tachometer-alt mr-2"></i> Admin Dashboard</h1>
+        <p class="mb-0">Welcome back, @User.Identity.Name!</p>
+    </div>
+
+    <div class="text-center">
+        @if (user.IsInRole("SuperAdmin"))
+        {
+            <div class="button-group">
+                <button class="btn btn-dashboard" onclick="location.href='@Url.Action("AccessRequests", "Dashboard")'">
+                    <i class="fas fa-user-clock mr-2"></i>Access Requests
+                </button>
+                <button class="btn btn-dashboard" onclick="location.href='@Url.Action("ViewUsers", "Dashboard")'">
+                    <i class="fas fa-users mr-2"></i>View Users
+                </button>
+                <button class="btn btn-dashboard btn-accent" onclick="location.href='@Url.Action("Index", "PaymentForm")'">
+                    <i class="fas fa-link mr-2"></i>Payment Links
+                </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="button-group">
+                <button class="btn btn-dashboard btn-dashboard-secondary" onclick="location.href='@Url.Action("CreateRole", "Admin")'">
+                    <i class="fas fa-plus-circle mr-2"></i>Create Role
+                </button>
+                <button class="btn btn-dashboard btn-dashboard-secondary" onclick="location.href='@Url.Action("AddAdmin", "Dashboard")'">
+                    <i class="fas fa-user-plus mr-2"></i>Add Admin
+                </button>
+                <button class="btn btn-dashboard btn-dashboard-secondary" onclick="location.href='@Url.Action("ViewAdmins", "Dashboard")'">
+                    <i class="fas fa-user-shield mr-2"></i>View Admins
+                </button>
+            </div>
+        }
+        else if (user.IsInRole("Admin"))
+        {
+            <div class="button-group">
+                <button class="btn btn-dashboard" onclick="location.href='@Url.Action("AccessRequests", "Dashboard")'">
+                    <i class="fas fa-user-clock mr-2"></i>Access Requests
+                </button>
+                <button class="btn btn-dashboard" onclick="location.href='@Url.Action("ViewUsers", "Dashboard")'">
+                    <i class="fas fa-users mr-2"></i>View Users
+                </button>
+                <button class="btn btn-dashboard btn-accent" onclick="location.href='@Url.Action("Index", "PaymentForm")'">
+                    <i class="fas fa-link mr-2"></i>Payment Links
+                </button>
+            </div>
+        }
+    </div>
+    <!-- Illustration Section -->
+
+    @* <div class="dashboard-illustration" style="padding: 10px;">
+        <img src="~/images/DashBoardApprove.png"
+             alt="Dashboard Visual"
+             style="max-width: 50%; height: auto; display: block; margin: 0 auto;">
+        <div class="illustration-caption"
+             style="font-family: 'Segoe UI', sans-serif !important;
+            color: #d32f2f !important;
+            margin-top: 12px !important;
+            text-align: center !important;">
+            Visualizing your administrative workflow
+        </div>
+    </div> *@
+
+    <div class="dashboard-illustration" style="padding: 10px; position: relative;">
+        <img src="~/images/DashBoardApprove.png"
+             alt="Dashboard Visual"
+             style="max-width: 50%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 4px 8px rgba(211, 47, 47, 0.2));">
+
+        <div class="illustration-caption"
+             style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: #d32f2f;
+                margin: 15px auto 0;
+                text-align: center;
+                max-width: 80%;
+                padding: 12px;
+                background: rgba(211, 47, 47, 0.05);
+                border-radius: 8px;
+                border-left: 4px solid #d32f2f;
+                font-weight: 600;
+                font-size: 1.1rem;
+                line-height: 1.4;
+                animation: fadeIn 0.5s ease-in-out;">
+            <i class="fas fa-bolt" style="color: #d32f2f; margin-right: 8px;"></i>
+            Power Through Your Workflow: Create, Manage & Control With Ease
+        </div>
+    </div>
+
+    <style>
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

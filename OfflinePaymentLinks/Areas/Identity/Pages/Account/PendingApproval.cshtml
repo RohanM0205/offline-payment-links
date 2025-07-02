@@ -1,0 +1,85 @@
+﻿@page
+@model PendingApprovalModel
+@{
+    ViewData["Title"] = "Account Pending Approval";
+}
+
+<div class="pending-approval-container">
+    <div class="text-center">
+        <div class="pending-approval-illustration mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#d9534f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+                <line x1="12" y1="9" x2="12" y2="11"></line>
+                <line x1="12" y1="15" x2="12" y2="16"></line>
+            </svg>
+        </div>
+
+        <h1 class="display-4 text-danger mb-4">@ViewData["Title"]</h1>
+
+        <div class="pending-approval-card p-4 mb-4 mx-auto">
+            <p class="lead">
+                <i class="fas fa-clock text-danger mr-2"></i>
+                Thank you for registering! Your account is currently under review.
+            </p>
+            <p class="mb-0">
+                Our team is verifying your information to ensure the security of our platform.
+                This process typically takes 1–2 business days.
+            </p>
+        </div>
+
+        <div class="alert alert-danger mx-auto" style="max-width: 600px;">
+            <i class="fas fa-envelope mr-2"></i>
+            You'll receive an email notification as soon as your account is approved.
+            Please check your inbox (and spam folder) for updates.
+        </div>
+
+        <a href="/" class="btn btn-outline-danger mt-3">
+            <i class="fas fa-home mr-2"></i>
+            Return to Home
+        </a>
+    </div>
+</div>
+
+<style>
+    .pending-approval-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .pending-approval-card {
+        background-color: #fff;
+        border-radius: 8px;
+        border-left: 4px solid #d9534f;
+        box-shadow: 0 4px 12px rgba(217, 83, 79, 0.1);
+        max-width: 600px;
+    }
+
+    .pending-approval-illustration {
+        margin-bottom: 2rem;
+        animation: pulse 2s infinite;
+        width: 150px;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
+<!-- Font Awesome (optional if not already included globally) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />

@@ -1,0 +1,306 @@
+﻿@model PaginatedList<UserWithRoleViewModel>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<style>
+    .users-management-container {
+        background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .users-table {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+        .users-table thead {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+        }
+
+        .users-table th {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 1rem;
+        }
+
+        .users-table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-top: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .users-table tr:nth-child(even) {
+            background-color: rgba(255, 235, 238, 0.3);
+        }
+
+        .users-table tr:hover {
+            background-color: rgba(255, 205, 210, 0.4);
+        }
+
+    .bulk-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 235, 238, 0.5);
+        border-radius: 8px;
+    }
+
+    .pagination-container {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .page-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #d32f2f;
+        background: white;
+        color: #d32f2f;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .page-btn:hover {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+    .btn-delete-selected {
+        background: linear-gradient(135deg, #f44336, #c62828);
+        border: none;
+        padding: 0.5rem 1.5rem;
+        color: white;
+        font-weight: 500;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-delete-selected:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+        }
+
+    .checkbox-cell {
+        width: 40px;
+        text-align: center;
+    }
+
+    .input-group {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-user-btn {
+        transition: all 0.2s ease;
+    }
+
+        .delete-user-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+    /* Red theme buttons */
+    .btn-outline-danger-custom {
+        color: #d32f2f;
+        border-color: #d32f2f;
+    }
+
+        .btn-outline-danger-custom:hover {
+            color: white;
+            background-color: #d32f2f;
+        }
+
+    .btn-danger-custom {
+        background-color: #d32f2f;
+        border-color: #d32f2f;
+        color: white;
+    }
+
+        .btn-danger-custom:hover {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+            color: white; 
+        }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+    <form method="get" class="d-flex" style="min-width: 450px;">
+        <input type="text" name="searchEmail" value="@ViewBag.SearchEmail" class="form-control me-2 shadow-sm" placeholder="Search by Email" style="width: 350px;" />
+        <button type="submit" class="btn btn-outline-danger-custom shadow-sm">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+
+    <!-- Dashboard Button -->
+    <a href="/Dashboard/Index" class="btn btn-danger-custom shadow-sm" style="min-width: 200px;">
+        <i class="fas fa-tachometer-alt me-1"></i> Dashboard
+    </a>
+</div>
+
+@if (ViewBag.SearchPerformed == true && ViewBag.AnyFound == false)
+{
+    <div class="alert alert-warning" role="alert">
+        No approved user found for "<strong>@Html.Encode(ViewBag.SearchEmail)</strong>".
+    </div>
+}
+
+<div class="users-management-container">
+    <h2 class="mb-4" style="color: #d32f2f; border-bottom: 2px solid rgba(211, 47, 47, 0.2); padding-bottom: 0.5rem;">
+        <i class="fas fa-users-cog mr-2"></i>Manage Users
+    </h2>
+
+    <!-- Bulk Action Form -->
+    <form id="bulkActionForm" asp-action="DeleteSelectedUsers" method="post">
+        <table class="table users-table">
+            <thead>
+                <tr>
+                    <th class="checkbox-cell">
+                        <input type="checkbox" id="selectAll" />
+                    </th>
+                    <th>User Email</th>
+                    <th>Role</th>
+                    <th>Registration Date</th>
+                    <th>Approved Date</th>
+                    <th>Approved By</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td class="checkbox-cell">
+                            <input type="checkbox" name="selectedUsers" value="@user.UserId" />
+                        </td>
+                        <td>@user.Email</td>
+                        <td>@user.RoleName</td>
+                        <td>@user.RegistrationDate.ToString("dd MMM yyyy")</td>
+                        <td>@user.ApprovedDate.ToString()</td>
+                        <td>@(user.ApproverName ?? "N/A")</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-outline-danger delete-user-btn"
+                                    data-userid="@user.UserId" data-email="@user.Email" data-role="@user.RoleName">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="bulk-actions">
+            <button type="submit" class="btn-delete-selected" id="deleteSelectedBtn" disabled>
+                <i class="fas fa-trash-alt mr-2"></i>Delete Selected
+            </button>
+
+            <div class="pagination-container">
+                @if (Model.HasPreviousPage)
+                {
+                    <a asp-action="ViewUsers"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       class="page-btn">
+                        <i class="fas fa-chevron-left mr-1"></i>Previous
+                    </a>
+                }
+                else
+                {
+                    <span class="page-btn disabled">
+                        <i class="fas fa-chevron-left mr-1"></i>Previous
+                    </span>
+                }
+
+                <span class="page-btn" style="background: #d32f2f; color: white;">
+                    Page @Model.PageIndex of @Model.TotalPages
+                </span>
+
+                @if (Model.HasNextPage)
+                {
+                    <a asp-action="ViewUsers"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       class="page-btn">
+                        Next<i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                }
+                else
+                {
+                    <span class="page-btn disabled">
+                        Next<i class="fas fa-chevron-right ml-1"></i>
+                    </span>
+                }
+            </div>
+        </div>
+    </form>
+
+    <!-- Individual Delete Forms (hidden) -->
+    @foreach (var user in Model)
+    {
+        <form id="delete-form-@user.UserId" asp-action="DeleteUser" asp-controller="Dashboard" method="post"
+              class="delete-user-form" style="display: none;">
+            <input type="hidden" name="userId" value="@user.UserId" />
+            <input type="hidden" name="userRole" value="@user.RoleName" />
+        </form>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Bulk actions functionality
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('input[name="selectedUsers"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateDeleteButtonState();
+        });
+
+        document.querySelectorAll('input[name="selectedUsers"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateDeleteButtonState);
+        });
+
+        function updateDeleteButtonState() {
+            const anyChecked = document.querySelectorAll('input[name="selectedUsers"]:checked').length > 0;
+            document.getElementById('deleteSelectedBtn').disabled = !anyChecked;
+        }
+
+        // Bulk delete confirmation
+        document.getElementById('bulkActionForm').addEventListener('submit', function(e) {
+            const count = document.querySelectorAll('input[name="selectedUsers"]:checked').length;
+            if (count === 0 || !confirm(`Are you sure you want to delete ${count} selected user(s)?`)) {
+                e.preventDefault();
+            }
+        });
+
+        // Individual delete handling
+        document.querySelectorAll('.delete-user-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-userid');
+                const email = this.getAttribute('data-email');
+                const role = this.getAttribute('data-role');
+
+                if (confirm(`Are you sure you want to delete ${email || "this user"}?`)) {
+                    document.getElementById(`delete-form-${userId}`).submit();
+                }
+            });
+        });
+    </script>
+}
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Success Illustration -->
+            <img src="https://cdn-icons-png.flaticon.com/512/7518/7518748.png" alt="Success" style="width: 150px; height: 150px;" class="mb-4">
+
+            <!-- Success Message -->
+            <div class="alert alert-success border-0 shadow-sm" style="background: rgba(46, 125, 50, 0.1); border-left: 4px solid #2e7d32;">
+                <h3 class="text-dark mb-0">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    Admin has been added successfully!
+                </h3>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <!-- Add Another Admin Button -->
+                <a href="/Dashboard/AddAdmin" class="btn btn-lg shadow-sm"
+                   style="background: linear-gradient(135deg, #d32f2f, #b71c1c); color: white; min-width: 200px;">
+                    <i class="fas fa-user-plus me-2"></i> Add Another Admin
+                </a>
+
+                <!-- Dashboard Button -->
+                <a href="/Dashboard/Index" class="btn btn-lg btn-outline-danger shadow-sm"
+                   style="border-color: #d32f2f; color: #d32f2f; min-width: 200px;">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

@@ -1,0 +1,51 @@
+﻿@page
+@model OfflinePaymentLinks.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/css/register.css" />
+
+<div class="register-container">
+    <div class="register-card">
+        <h2 class="register-title">Create Account</h2>
+        <p class="register-subtitle">Join us to get started</p>
+
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <!-- Email -->
+            <div class="mb-3 position-relative text-start">
+                <label asp-for="Input.Email" class="form-label text-muted">Email</label>
+                <input asp-for="Input.Email" class="form-control py-3 rounded-3" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3 position-relative text-start">
+                <label asp-for="Input.Password" class="form-label text-muted">Password</label>
+                <input asp-for="Input.Password" class="form-control py-3 rounded-3" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-3 position-relative text-start">
+                <label asp-for="Input.ConfirmPassword" class="form-label text-muted">Confirm Password</label>
+                <input asp-for="Input.ConfirmPassword" class="form-control py-3 rounded-3" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="btn register-btn">Register</button>
+
+            <!-- Links -->
+            <div class="register-links">
+                <a asp-page="./Login">Already have an account? Log in</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

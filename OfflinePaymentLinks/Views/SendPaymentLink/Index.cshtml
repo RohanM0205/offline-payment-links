@@ -1,0 +1,161 @@
+﻿@model OfflinePaymentLinks.Models.PrePaymentData
+
+@{
+    ViewData["Title"] = "Send Payment Link";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/sendpayment-success.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+}
+
+<!-- Toast Notification -->
+<div class="custom-notification" id="channelToast">
+    <i class="fas fa-exclamation-circle"></i>
+    <span>Please select at least one option: Email or SMS.</span>
+</div>
+
+<!-- Main Container -->
+<div class="payment-success-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="payment-success-card text-center">
+
+                    <!-- Illustration -->
+                    <div class="illustration-wrapper">
+                        <img src="~/images/paymentSuccess.png" alt="Success Illustration" />
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-success">Payment Link Generated!</h3>
+                    <p>Your secure payment link is ready to be shared with the customer.</p>
+
+                    <!-- Invoice Number and Payment Link -->
+                    <div class="detail-item">
+                        <div class="detail-content">
+                            <div class="detail-content-row">
+                                <h4>Invoice Number</h4>
+                                <p>@Model.InvoiceNo</p>
+                            </div>
+                            <div class="detail-content-row">
+                                <h4>Payment Link</h4>
+                                <a href="@Model.PaymentLink" target="_blank">@Model.PaymentLink</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Copy Button -->
+                    <button class="copy-btn" onclick="copyToClipboard('@Model.PaymentLink')">📋 Copy Link</button>
+
+                    <!-- Delivery Options -->
+                    <div class="delivery-options" id="deliveryBox">
+                        <h5>📤 Send Payment Link Via</h5>
+                        <div style="display: flex; justify-content: center; gap: 30px;">
+                            <div class="option-item">
+                                <input type="checkbox" id="emailOption" />
+                                <label for="emailOption">Email</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="smsOption" />
+                                <label for="smsOption">SMS</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Send Button -->
+                    <button class="send-btn" id="sendBtn" onclick="sendLink()">🚀 Send Payment Link</button>
+
+                    <!-- Success Message -->
+                    <div class="success-state" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Payment link sent successfully!</h4>
+                        <button class="send-another-btn" onclick="redirectToPaymentForm()">Go to Payment Form</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.classList.add('copied');
+                btn.innerText = 'Copied!';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerText = '📋 Copy Link';
+                }, 2000);
+            });
+        }
+
+        function sendLink() {
+            const email = document.getElementById('emailOption').checked;
+            const sms = document.getElementById('smsOption').checked;
+
+            if (!email && !sms) {
+                const toast = document.getElementById('channelToast');
+                const box = document.getElementById('deliveryBox');
+
+                toast.classList.add('active');
+                box.classList.add('shake');
+
+                setTimeout(() => {
+                    document.addEventListener('click', dismissToastOnce);
+                    document.getElementById('emailOption')?.addEventListener('change', dismissToastOnce);
+                    document.getElementById('smsOption')?.addEventListener('change', dismissToastOnce);
+                }, 100);
+
+                return;
+            }
+
+            const requestBody = {
+                prePaymentData: {
+                    invoiceNo: "@Model.InvoiceNo",
+                    paymentLink: "@Model.PaymentLink"
+                },
+                sendEmail: email,
+                sendSms: sms
+            };
+
+            fetch('/SendPaymentLink/ProcessAndSend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody)
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error("Failed to send link.");
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('sendBtn').style.display = 'none';
+                    document.querySelector('.delivery-options').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('active');
+                })
+                .catch(error => {
+                    alert('Error sending link. Please try again.');
+                    console.error(error);
+                });
+        }
+
+        function redirectToPaymentForm() {
+            window.location.href = '/PaymentForm';
+        }
+
+        function dismissToastOnce() {
+            const toast = document.getElementById('channelToast');
+            const box = document.getElementById('deliveryBox');
+            toast.classList.remove('active');
+            box.classList.remove('shake');
+
+            document.removeEventListener('click', dismissToastOnce);
+            document.getElementById('emailOption')?.removeEventListener('change', dismissToastOnce);
+            document.getElementById('smsOption')?.removeEventListener('change', dismissToastOnce);
+        }
+    </script>
+}

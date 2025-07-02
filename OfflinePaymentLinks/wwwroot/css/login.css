@@ -1,0 +1,120 @@
+﻿.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #fff8f8, #ffe6e6);
+}
+
+.login-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(214, 43, 31, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    border-top: 4px solid #d32f2f;
+}
+
+.login-title {
+    color: #d32f2f;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.login-subtitle {
+    color: #555;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    color: white; 
+}
+
+
+    .login-btn:hover {
+        background: linear-gradient(135deg, #b71c1c, #8e0e0e);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+    }
+
+.login-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+    /*.login-links a {
+        color: #d32f2f;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+        .login-links a:hover {
+            color: #b02a37;
+            text-decoration: underline;
+        }*/
+
+    .login-links a {
+        color: #d32f2f;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+        .login-links a:hover {
+            color: #b02a37;
+            text-decoration: underline;
+        }
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+}
+
+.form-check-input {
+    width: 1.1em;
+    height: 1.1em;
+    margin-top: 0;
+    border: 1px solid #ddd;
+}
+
+    .form-check-input:checked {
+        background-color: #d32f2f;
+        border-color: #d32f2f;
+    }
+
+.text-danger {
+    color: #d32f2f !important;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .login-card {
+        padding: 1.5rem;
+    }
+
+    .login-title {
+        font-size: 1.75rem;
+    }
+}

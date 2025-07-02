@@ -1,0 +1,124 @@
+﻿@model CreateRoleViewModel
+@{
+    ViewData["Title"] = "Create Role";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="fas fa-user-tag me-2"></i>Create New Role</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="CreateRole" method="post">
+                        <div class="form-group mb-4">
+                            <label asp-for="RoleName" class="form-label fw-bold"></label>
+                            <input asp-for="RoleName" class="form-control" placeholder="e.g., Administrator, Manager" />
+                            <span asp-validation-for="RoleName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="submit" class="btn btn-danger py-2">
+                                <i class="fas fa-plus-circle me-2"></i>Create Role
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Status Messages -->
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success mt-3">
+                            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                        </div>
+                    }
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger mt-3">
+                            <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+                        </div>
+                    }
+                </div>
+
+                <!-- Illustration Section -->
+                <div class="text-center px-4 pb-3">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4775/4775458.png"
+                         alt="Role management illustration"
+                         class="img-fluid mt-2"
+                         style="max-height: 180px; filter: hue-rotate(-10deg) brightness(0.9);">
+                    <p class="text-muted small mt-2">Create and manage user roles to control system access</p>
+                </div>
+
+                <!-- Dashboard Button Footer -->
+                <div class="card-footer bg-light border-0 pt-0">
+                    <div class="text-center">
+                        <a href="/Dashboard/Index" class="btn btn-outline-danger px-4">
+                            <i class="fas fa-tachometer-alt me-2"></i>Return to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+            .form-control:focus {
+                box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+                border-color: #dc3545;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                transform: translateY(-2px);
+            }
+
+        .btn-outline-danger {
+            border-width: 2px;
+            font-weight: 500;
+        }
+
+            .btn-outline-danger:hover {
+                background-color: #dc3545;
+            }
+
+        .illustration-container {
+            background-color: #fff9f9;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+}

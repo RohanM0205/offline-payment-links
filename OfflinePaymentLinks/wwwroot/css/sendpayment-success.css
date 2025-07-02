@@ -1,0 +1,264 @@
+﻿/* ================================
+   General Container
+================================ */
+.payment-success-container {
+    padding: 3rem 1rem;
+    background: linear-gradient(to right, #fff8f8, #ffffff);
+    min-height: 100vh;
+}
+
+/* ================================
+   Card Styling
+================================ */
+.payment-success-card {
+    border: none;
+    padding: 2.5rem;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 10px 25px rgba(211, 47, 47, 0.1);
+}
+
+/* ================================
+   Illustration
+================================ */
+.illustration-wrapper {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+    .illustration-wrapper img {
+        width: 120px;
+        height: auto;
+        border-radius: 20px;
+        background: #ffffff;
+        padding: 4px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+/* ================================
+   Detail Section
+================================ */
+.detail-item {
+    background: #fff5f5;
+    border-left: 4px solid #d32f2f;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.detail-content-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.detail-content h4 {
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.detail-content p,
+.detail-content a {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    word-break: break-word;
+    color: #d32f2f;
+    text-decoration: none;
+}
+
+    .detail-content a:hover {
+        text-decoration: underline;
+    }
+
+/* ================================
+   Copy Button
+================================ */
+.copy-btn {
+    margin-top: 12px;
+    padding: 6px 16px;
+    background: white;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .copy-btn:hover {
+        background-color: #d32f2f;
+        color: white;
+    }
+
+    .copy-btn.copied {
+        background: #4caf50 !important;
+        border-color: #4caf50 !important;
+        color: white !important;
+    }
+
+/* ================================
+   Delivery Options
+================================ */
+.delivery-options {
+    background: #fff9f9;
+    border: 1px solid #fce4ec;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 2rem 0 1rem;
+    text-align: center;
+}
+
+    .delivery-options h5 {
+        color: #d32f2f;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+.option-item {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+    .option-item input {
+        margin-right: 10px;
+        accent-color: #d32f2f;
+    }
+
+/* ================================
+   Action Button
+================================ */
+.send-btn {
+    background: linear-gradient(to right, #d32f2f, #c62828);
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+    transition: all 0.3s ease;
+}
+
+    .send-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(211, 47, 47, 0.4);
+    }
+
+/* ================================
+   Success State Section
+================================ */
+.success-state {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+    .success-state.active {
+        display: block;
+    }
+
+    .success-state i {
+        font-size: 3rem;
+        color: #4caf50;
+        margin-bottom: 1rem;
+    }
+
+    .success-state h4 {
+        color: #4caf50;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+/* ================================
+   Secondary Button
+================================ */
+.send-another-btn {
+    background: transparent;
+    border: 2px solid #d32f2f;
+    color: #d32f2f;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 500;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .send-another-btn:hover {
+        background: #d32f2f;
+        color: white;
+    }
+
+/* ================================
+   Toast + Shake Effect
+================================ */
+#channelToast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #d32f2f;
+    padding: 14px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #d32f2f;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+    #channelToast.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    50% {
+        transform: translateX(6px);
+    }
+
+    75% {
+        transform: translateX(-6px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.delivery-options.shake {
+    animation: shake 0.4s ease-in-out;
+    border: 2px dashed #d32f2f;
+}

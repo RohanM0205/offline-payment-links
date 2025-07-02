@@ -1,0 +1,219 @@
+﻿/* Register Page - Matches Login Styling Exactly */
+/*.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #fff8f8, #ffe6e6);
+}
+
+.register-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(214, 43, 31, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.register-title {
+    color: #d62b1f;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.register-subtitle {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+#registerForm .form-control {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+    #registerForm .form-control:focus {
+        border-color: #d62b1f;
+        box-shadow: 0 0 0 0.25rem rgba(214, 43, 31, 0.2);
+    }
+
+.register-btn {
+    background-color: #d62b1f;
+    border-color: #b8241a;
+    padding: 0.75rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    color: white;*/ /* ✅ Make button text white */
+/*}
+
+    .register-btn:hover {
+        background-color: #b8241a;
+        transform: translateY(-2px);
+    }
+
+
+.register-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+    .register-links a {
+        color: #d62b1f;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+        .register-links a:hover {
+            color: #b8241a;
+            text-decoration: underline;
+        }
+
+.text-danger {
+    color: #d62b1f;
+    font-size: 0.9rem;
+}*/
+
+/* Hide external auth section completely */
+/*.external-auth-section {
+    display: none;
+}*/
+
+
+/* Register Page - Matches Login Styling Exactly */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #fff8f8, #ffe6e6);
+}
+
+.register-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(214, 43, 31, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    border-top: 4px solid #d32f2f;
+    text-align: center;
+}
+
+.register-title {
+    color: #d32f2f;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.register-subtitle {
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* Form Input Styling */
+#registerForm .form-control {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+    #registerForm .form-control:focus {
+        border-color: #d32f2f;
+        box-shadow: 0 0 0 0.25rem rgba(211, 47, 47, 0.2);
+    }
+
+/* Submit Button */
+.register-btn {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    color: white; /* ✅ white text */
+    border-radius: 8px;
+}
+
+    .register-btn:hover {
+        background: linear-gradient(135deg, #b71c1c, #8e0e0e);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+    }
+
+/* Error/Validation Message Styling */
+.text-danger {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Highlighted error alert for general validation errors (like duplicate user) */
+.validation-summary-errors ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    background: #ffebee;
+    border: 1px solid #f44336;
+    color: #b71c1c;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+    .validation-summary-errors ul li::before {
+        content: "⚠ ";
+        font-weight: bold;
+        margin-right: 0.25rem;
+    }
+
+/* Register links */
+.register-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+    .register-links a {
+        color: #d32f2f;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+        .register-links a:hover {
+            color: #b8241a;
+            text-decoration: underline;
+        }
+
+/* Responsive */
+@media (max-width: 576px) {
+    .register-card {
+        padding: 1.5rem;
+    }
+
+    .register-title {
+        font-size: 1.75rem;
+    }
+
+    #registerForm .form-control {
+        padding: 0.75rem;
+    }
+}
