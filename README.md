@@ -12,7 +12,31 @@ The **Offline Payment Links** project was built to simplify and secure the payme
 - Generation of short, shareable payment URLs.
 - Options to send links via Email and/or SMS.
 - Auto-renewal handling, including mandatory document uploads when auto-renewal is stopped.
+- Dashboard to monitor and access payment links based on user roles.
 - Real-time feedback and validations for a smooth user experience.
+
+---
+
+## 🔐 Dashboard & Role-Based Access
+
+### 🧑‍💼 SuperAdmin & Admin Roles
+The application implements **ASP.NET Core Identity**-based role management with the following access control:
+
+| Role        | Access Rights |
+|-------------|----------------|
+| **SuperAdmin** | Can create new Admins and access the entire system dashboard |
+| **Admin**      | Can view payment link logs and access management dashboard |
+| **User/CEM**   | Directly redirected to the payment form to generate links |
+
+### 🔧 Dashboard Highlights
+- **Dashboard URL**: `/Dashboard/Index`
+- Filter/search for existing payment links
+- Role-based routing:  
+   - `SuperAdmin` → Admin Panel  
+   - `Admin` → Payment Link Logs  
+   - `User` or `CEM` → Payment Form (skips dashboard)
+
+> Dashboard also displays summary reports and quick actions based on roles.
 
 ---
 
