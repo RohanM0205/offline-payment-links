@@ -111,29 +111,100 @@ The application implements **ASP.NET Core Identity**-based role management with 
 
 OfflinePaymentLinks/
 │
-├── Controllers/
-│ ├── PaymentFormController.cs
-│ └── SendPaymentLinkController.cs
+├── Areas/
+│   ├── Identity/
+│   └── Admin/
+│       ├── Controllers/
+│       │   ├── AdminController.cs
+│       │   ├── DashboardController.cs
+│       │   └── RoleController.cs
+│       └── Views/
+│           ├── Dashboard/
+│           │   ├── AccessRequests.cshtml
+│           │   ├── AddAdmin.cshtml
+│           │   ├── AdminAdded.cshtml
+│           │   ├── CreateRole.cshtml
+│           │   └── ViewUsers.cshtml
+│           └── Shared/
 │
-├── Views/
-│ ├── PaymentForm/
-│ │ └── Index.cshtml
-│ └── SendPaymentLink/
-│ └── Index.cshtml
+├── Controllers/
+│   ├── HomeController.cs
+│   ├── PaymentFormController.cs
+│   └── SendPaymentLinkController.cs
+│
+├── Data/
+│   ├── Migrations/
+│   └── ApplicationDbContext.cs
+│
+├── Helpers/
+│   ├── ShortCodeGenerator.cs
+│   └── PaymentUtilityService.cs
 │
 ├── Models/
-│ └── PrePaymentData.cs
+│   ├── AddAdminViewModel.cs
+│   ├── ApplicationUser.cs
+│   ├── CreateRoleViewModel.cs
+│   ├── ErrorViewModel.cs
+│   ├── KYCInformation.cs
+│   ├── PaginatedList.cs
+│   ├── PaymentFormModel.cs
+│   ├── PaymentLinkRequest.cs
+│   ├── PinCodeData.cs
+│   ├── PolicyInformation.cs
+│   ├── PrePaymentData.cs
+│   ├── UrlMapping.cs
+│   ├── UrlResponse.cs
+│   └── UserWithRoleViewModel.cs
+│
+├── Repositories/
+│   ├── GenericPaymentsFetchRepository.cs
+│   └── GenericPaymentsFetchService.cs
+│
+├── Services/
+│   └── PaymentUtilityService.cs
+│
+├── Views/
+│   ├── Home/
+│   │   ├── Contact.cshtml
+│   │   ├── Index.cshtml
+│   │   └── Privacy.cshtml
+│   ├── PaymentForm/
+│   │   ├── Section1.cshtml
+│   │   ├── Section2.cshtml
+│   │   ├── Section3.cshtml
+│   │   ├── Section4.cshtml
+│   │   └── Index.cshtml
+│   ├── SendPaymentLink/
+│   │   └── Index.cshtml
+│   └── Shared/
+│       ├── _Layout.cshtml
+│       ├── _ViewImports.cshtml
+│       └── _ViewStart.cshtml
 │
 ├── wwwroot/
-│ ├── css/
-│ ├── js/
-│ └── images/
+│   ├── css/
+│   │   ├── login.css
+│   │   ├── register.css
+│   │   ├── section1.css
+│   │   ├── section2.css
+│   │   ├── section3.css
+│   │   ├── section4.css
+│   │   ├── sendpayment-success.css
+│   │   └── site.css
+│   ├── js/
+│   │   ├── paymentButton.js
+│   │   ├── section1.js
+│   │   ├── section2.js
+│   │   ├── section3.js
+│   │   ├── section4.js
+│   │   └── site.js
+│   └── images/
 │
 ├── UploadedFiles/
-│ └── {InvoiceNo}.zip
+│   └── {InvoiceNo}.zip
 │
-└── README.md
-
+├── README.md
+└── .gitignore
 
 ---
 
